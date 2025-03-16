@@ -3,6 +3,7 @@ import {
   Outlet,
   Link,
   redirect,
+  useNavigate,
 } from "@tanstack/react-router";
 import {
   SidebarProvider,
@@ -68,6 +69,8 @@ const data = [
 ];
 
 function RouteComponent() {
+  const navigate = useNavigate();
+
   return (
     <SidebarProvider>
       <Sidebar>
@@ -125,7 +128,12 @@ function RouteComponent() {
           ))}
         </SidebarContent>
         <SidebarFooter className="bg-white">
-          <Button>
+          <Button
+            onClick={() => {
+              sessionStorage.removeItem("sessionId");
+              navigate({ to: "/" });
+            }}
+          >
             Cerrar Sesión
             <LogOut />
           </Button>
