@@ -16,7 +16,7 @@ export const personalDataSchema = z.object({
   email: z.string(),
   alternativEmail: z.string().nullish(),
   phoneNumber: z.string(),
-  alternativePhoneNumber: z.string(),
+  alternativePhoneNumber: z.string().nullish(),
   birthdate: z.string(),
   birthplace: z.string(),
   genre: z.string(),

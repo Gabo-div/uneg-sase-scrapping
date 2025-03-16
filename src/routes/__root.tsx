@@ -18,6 +18,7 @@ function RootComponent() {
     <SWRConfig
       value={{
         onError: (error) => {
+          console.log("Fetching error: ", { error });
           if (isRedirect(error)) {
             navigate(error);
           }
