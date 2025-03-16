@@ -51,11 +51,21 @@ export const login = async ({
   formData2.append("xyz_mvg[1]", xyz1);
   formData2.append("xyz_mvg[2]", xyz2);
 
-  await ky
+  const res3 = await ky
     .post("https://servicio.uneg.edu.ve/sase/principal/redirect.php", {
       body: formData2,
     })
     .text();
 
-  return { sessionId };
+  const $3 = load(res3);
+
+  const text = $3.text();
+
+  return {
+    sessionId,
+    invalid: text.includes("Lo siento, Usted es un usuario no registrado"),
+    blocked: text.includes(
+      "Lo siento, Usted es un usuario con el password bloqueado",
+    ),
+  };
 };

@@ -37,7 +37,24 @@ function App() {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const { sessionId } = await login(values);
+    const { sessionId, invalid, blocked } = await login(values);
+
+    if (invalid) {
+      form.setError("root", {
+        message: "Credenciales inválidas",
+      });
+
+      return;
+    }
+
+    if (blocked) {
+      form.setError("root", {
+        message: "Tu usuario está bloqueado",
+      });
+
+      return;
+    }
+
     sessionStorage.setItem("sessionId", sessionId);
     navigate({
       to: "/dashboard",
@@ -88,7 +105,15 @@ function App() {
                 </FormItem>
               )}
             />
-            <Button type="submit">Ingresar</Button>
+
+            <div className="flex flex-col gap-2">
+              <Button type="submit">Ingresar</Button>
+              {form.formState.errors.root ? (
+                <p className="text-red-500 text-sm text-center">
+                  {form.formState.errors.root.message}
+                </p>
+              ) : null}
+            </div>
 
             <div className="w-full items-center flex flex-col">
               <p className="text-sm">
