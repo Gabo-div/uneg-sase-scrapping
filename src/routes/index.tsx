@@ -21,8 +21,8 @@ export const Route = createFileRoute("/")({
 });
 
 const formSchema = z.object({
-  username: z.string().min(1),
-  password: z.string().min(1),
+  username: z.string().min(1, "Debes ingresar un usuario"),
+  password: z.string().min(1, "Debes ingresar una contraseña"),
 });
 
 function App() {
@@ -45,8 +45,8 @@ function App() {
   };
 
   return (
-    <div className="h-screen w-full flex items-center justify-center bg-primary">
-      <Card className="container max-w-md p-0">
+    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-primary sm:p-4">
+      <Card className="flex-1 flex items-center justify-center rounded-none sm:flex-0 sm:rounded-lg sm:container sm:max-w-md p-0">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -92,15 +92,15 @@ function App() {
 
             <div className="w-full items-center flex flex-col">
               <p className="text-sm">
-                Este sistema no es oficial de la UNEG. No recopilamos ningun
-                tipo de información. Todo el código fuente esta disponible en el{" "}
+                Este sistema no es oficial de la UNEG. No recopilamos ningún
+                tipo de información. Todo el código fuente está disponible en el{" "}
                 <a
                   href="https://github.com/Gabo-div/uneg-sase-scrapping"
                   className="text-cobalt-500 hover:underline"
                   target="_blank"
                   rel="noopener"
                 >
-                  repositorio de github.
+                  repositorio de GitHub.
                 </a>
               </p>
             </div>
