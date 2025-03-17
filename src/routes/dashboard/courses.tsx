@@ -62,7 +62,7 @@ function RouteComponent() {
                 const course = findCourse(item.courseId);
 
                 return (
-                  <TableRow className="border-b-muted py-2">
+                  <TableRow key={item.courseId} className="border-b-muted py-2">
                     <TableCell className="text-center">
                       {item.courseId}
                     </TableCell>
@@ -114,7 +114,7 @@ function RouteComponent() {
                 const course = findCourse(item.courseId);
 
                 return (
-                  <TableRow className="border-b-muted py-2">
+                  <TableRow key={item.courseId} className="border-b-muted py-2">
                     <TableCell className="text-center">
                       {item.courseId}
                     </TableCell>
@@ -166,7 +166,7 @@ function RouteComponent() {
                 const course = findCourse(item.courseId);
 
                 return (
-                  <TableRow className="border-b-muted py-2">
+                  <TableRow key={item.courseId} className="border-b-muted py-2">
                     <TableCell className="text-center">
                       {item.courseId}
                     </TableCell>

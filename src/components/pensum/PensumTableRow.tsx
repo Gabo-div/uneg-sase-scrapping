@@ -64,7 +64,7 @@ export default function PensumTableRow({ course: item }: Props) {
                     const approved = isApproved(i);
 
                     return (
-                      <div>
+                      <div key={i}>
                         <span
                           className={twMerge(
                             "font-vold",

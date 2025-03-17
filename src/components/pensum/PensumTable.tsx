@@ -9,6 +9,7 @@ import {
 import useCoursesInfo from "@/hooks/useCoursesInfo";
 import { Course } from "@/types/course";
 import PensumTableRow from "./PensumTableRow";
+import { Fragment } from "react";
 
 interface Props {
   courses: Course[];
@@ -64,9 +65,9 @@ export default function PensumTable({
               }
 
               return (
-                <>
+                <Fragment key={key}>
                   {courses.map((item) => (
-                    <PensumTableRow course={item} />
+                    <PensumTableRow key={item.id} course={item} />
                   ))}
                   <TableRow className="bg-zinc-100">
                     <TableCell colSpan={3}>
@@ -79,7 +80,7 @@ export default function PensumTable({
                     </TableCell>
                     <TableCell colSpan={2} className="text-center"></TableCell>
                   </TableRow>
-                </>
+                </Fragment>
               );
             })}
 
@@ -96,7 +97,7 @@ export default function PensumTable({
 
                   return true;
                 })
-                .map((item) => <PensumTableRow course={item} />)}
+                .map((item) => <PensumTableRow key={item.id} course={item} />)}
           </TableBody>
         </Table>
       </div>
