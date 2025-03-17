@@ -6,6 +6,7 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { SWRConfig } from "swr";
+import { Analytics } from "@vercel/analytics/react";
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -27,6 +28,7 @@ function RootComponent() {
     >
       <Outlet />
       <TanStackRouterDevtools />
+      <Analytics />
     </SWRConfig>
   );
 }
