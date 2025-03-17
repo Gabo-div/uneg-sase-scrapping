@@ -22,7 +22,7 @@ import {
   SidebarFooter,
 } from "@/components/ui/sidebar";
 
-import { Book, File, GraduationCap, List, LogOut } from "lucide-react";
+import { Book, File, GraduationCap, List, LogOut, Users } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 import { Button } from "@/components/ui/button";
 import Logo from "@/assets/uneg-logo.png";
@@ -63,6 +63,16 @@ const data = [
         url: "/dashboard/certificate",
         icon: File,
         disabled: true,
+      },
+    ],
+  },
+  {
+    title: "Evaluación Docente",
+    items: [
+      {
+        title: "Docentes",
+        url: "/dashboard/teachers",
+        icon: Users,
       },
     ],
   },

@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as DashboardRouteImport } from './routes/dashboard/route'
 import { Route as IndexImport } from './routes/index'
 import { Route as DashboardIndexImport } from './routes/dashboard/index'
+import { Route as DashboardTeachersImport } from './routes/dashboard/teachers'
 import { Route as DashboardStudentImport } from './routes/dashboard/student'
 import { Route as DashboardPensumImport } from './routes/dashboard/pensum'
 import { Route as DashboardCoursesImport } from './routes/dashboard/courses'
@@ -35,6 +36,12 @@ const IndexRoute = IndexImport.update({
 const DashboardIndexRoute = DashboardIndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+
+const DashboardTeachersRoute = DashboardTeachersImport.update({
+  id: '/teachers',
+  path: '/teachers',
   getParentRoute: () => DashboardRouteRoute,
 } as any)
 
@@ -95,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardStudentImport
       parentRoute: typeof DashboardRouteImport
     }
+    '/dashboard/teachers': {
+      id: '/dashboard/teachers'
+      path: '/teachers'
+      fullPath: '/dashboard/teachers'
+      preLoaderRoute: typeof DashboardTeachersImport
+      parentRoute: typeof DashboardRouteImport
+    }
     '/dashboard/': {
       id: '/dashboard/'
       path: '/'
@@ -111,6 +125,7 @@ interface DashboardRouteRouteChildren {
   DashboardCoursesRoute: typeof DashboardCoursesRoute
   DashboardPensumRoute: typeof DashboardPensumRoute
   DashboardStudentRoute: typeof DashboardStudentRoute
+  DashboardTeachersRoute: typeof DashboardTeachersRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
@@ -118,6 +133,7 @@ const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
   DashboardCoursesRoute: DashboardCoursesRoute,
   DashboardPensumRoute: DashboardPensumRoute,
   DashboardStudentRoute: DashboardStudentRoute,
+  DashboardTeachersRoute: DashboardTeachersRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
 
@@ -131,6 +147,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/courses': typeof DashboardCoursesRoute
   '/dashboard/pensum': typeof DashboardPensumRoute
   '/dashboard/student': typeof DashboardStudentRoute
+  '/dashboard/teachers': typeof DashboardTeachersRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 
@@ -139,6 +156,7 @@ export interface FileRoutesByTo {
   '/dashboard/courses': typeof DashboardCoursesRoute
   '/dashboard/pensum': typeof DashboardPensumRoute
   '/dashboard/student': typeof DashboardStudentRoute
+  '/dashboard/teachers': typeof DashboardTeachersRoute
   '/dashboard': typeof DashboardIndexRoute
 }
 
@@ -149,6 +167,7 @@ export interface FileRoutesById {
   '/dashboard/courses': typeof DashboardCoursesRoute
   '/dashboard/pensum': typeof DashboardPensumRoute
   '/dashboard/student': typeof DashboardStudentRoute
+  '/dashboard/teachers': typeof DashboardTeachersRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 
@@ -160,6 +179,7 @@ export interface FileRouteTypes {
     | '/dashboard/courses'
     | '/dashboard/pensum'
     | '/dashboard/student'
+    | '/dashboard/teachers'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -167,6 +187,7 @@ export interface FileRouteTypes {
     | '/dashboard/courses'
     | '/dashboard/pensum'
     | '/dashboard/student'
+    | '/dashboard/teachers'
     | '/dashboard'
   id:
     | '__root__'
@@ -175,6 +196,7 @@ export interface FileRouteTypes {
     | '/dashboard/courses'
     | '/dashboard/pensum'
     | '/dashboard/student'
+    | '/dashboard/teachers'
     | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
@@ -212,6 +234,7 @@ export const routeTree = rootRoute
         "/dashboard/courses",
         "/dashboard/pensum",
         "/dashboard/student",
+        "/dashboard/teachers",
         "/dashboard/"
       ]
     },
@@ -225,6 +248,10 @@ export const routeTree = rootRoute
     },
     "/dashboard/student": {
       "filePath": "dashboard/student.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/teachers": {
+      "filePath": "dashboard/teachers.tsx",
       "parent": "/dashboard"
     },
     "/dashboard/": {
