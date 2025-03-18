@@ -38,7 +38,7 @@ function App() {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const { sessionId, invalid, blocked } = await login(values);
+    const { sipId, saseId, invalid, blocked } = await login(values);
 
     if (invalid) {
       form.setError("root", {
@@ -56,7 +56,9 @@ function App() {
       return;
     }
 
-    sessionStorage.setItem("sessionId", sessionId);
+    sessionStorage.setItem("sipId", sipId);
+    sessionStorage.setItem("saseId", saseId);
+
     navigate({
       to: "/dashboard",
     });

@@ -7,6 +7,7 @@ import {
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { SWRConfig } from "swr";
 import { Analytics } from "@vercel/analytics/react";
+import { Toaster } from "@/components/ui/sonner";
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -29,6 +30,7 @@ function RootComponent() {
       <Outlet />
       <TanStackRouterDevtools />
       <Analytics />
+      <Toaster richColors />
     </SWRConfig>
   );
 }

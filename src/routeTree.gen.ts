@@ -16,7 +16,9 @@ import { Route as IndexImport } from './routes/index'
 import { Route as DashboardIndexImport } from './routes/dashboard/index'
 import { Route as DashboardTeachersImport } from './routes/dashboard/teachers'
 import { Route as DashboardStudentImport } from './routes/dashboard/student'
+import { Route as DashboardScheduleImport } from './routes/dashboard/schedule'
 import { Route as DashboardPensumImport } from './routes/dashboard/pensum'
+import { Route as DashboardPaymentImport } from './routes/dashboard/payment'
 import { Route as DashboardCoursesImport } from './routes/dashboard/courses'
 
 // Create/Update Routes
@@ -51,9 +53,21 @@ const DashboardStudentRoute = DashboardStudentImport.update({
   getParentRoute: () => DashboardRouteRoute,
 } as any)
 
+const DashboardScheduleRoute = DashboardScheduleImport.update({
+  id: '/schedule',
+  path: '/schedule',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+
 const DashboardPensumRoute = DashboardPensumImport.update({
   id: '/pensum',
   path: '/pensum',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+
+const DashboardPaymentRoute = DashboardPaymentImport.update({
+  id: '/payment',
+  path: '/payment',
   getParentRoute: () => DashboardRouteRoute,
 } as any)
 
@@ -88,11 +102,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardCoursesImport
       parentRoute: typeof DashboardRouteImport
     }
+    '/dashboard/payment': {
+      id: '/dashboard/payment'
+      path: '/payment'
+      fullPath: '/dashboard/payment'
+      preLoaderRoute: typeof DashboardPaymentImport
+      parentRoute: typeof DashboardRouteImport
+    }
     '/dashboard/pensum': {
       id: '/dashboard/pensum'
       path: '/pensum'
       fullPath: '/dashboard/pensum'
       preLoaderRoute: typeof DashboardPensumImport
+      parentRoute: typeof DashboardRouteImport
+    }
+    '/dashboard/schedule': {
+      id: '/dashboard/schedule'
+      path: '/schedule'
+      fullPath: '/dashboard/schedule'
+      preLoaderRoute: typeof DashboardScheduleImport
       parentRoute: typeof DashboardRouteImport
     }
     '/dashboard/student': {
@@ -123,7 +151,9 @@ declare module '@tanstack/react-router' {
 
 interface DashboardRouteRouteChildren {
   DashboardCoursesRoute: typeof DashboardCoursesRoute
+  DashboardPaymentRoute: typeof DashboardPaymentRoute
   DashboardPensumRoute: typeof DashboardPensumRoute
+  DashboardScheduleRoute: typeof DashboardScheduleRoute
   DashboardStudentRoute: typeof DashboardStudentRoute
   DashboardTeachersRoute: typeof DashboardTeachersRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
@@ -131,7 +161,9 @@ interface DashboardRouteRouteChildren {
 
 const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
   DashboardCoursesRoute: DashboardCoursesRoute,
+  DashboardPaymentRoute: DashboardPaymentRoute,
   DashboardPensumRoute: DashboardPensumRoute,
+  DashboardScheduleRoute: DashboardScheduleRoute,
   DashboardStudentRoute: DashboardStudentRoute,
   DashboardTeachersRoute: DashboardTeachersRoute,
   DashboardIndexRoute: DashboardIndexRoute,
@@ -145,7 +177,9 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
   '/dashboard/courses': typeof DashboardCoursesRoute
+  '/dashboard/payment': typeof DashboardPaymentRoute
   '/dashboard/pensum': typeof DashboardPensumRoute
+  '/dashboard/schedule': typeof DashboardScheduleRoute
   '/dashboard/student': typeof DashboardStudentRoute
   '/dashboard/teachers': typeof DashboardTeachersRoute
   '/dashboard/': typeof DashboardIndexRoute
@@ -154,7 +188,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard/courses': typeof DashboardCoursesRoute
+  '/dashboard/payment': typeof DashboardPaymentRoute
   '/dashboard/pensum': typeof DashboardPensumRoute
+  '/dashboard/schedule': typeof DashboardScheduleRoute
   '/dashboard/student': typeof DashboardStudentRoute
   '/dashboard/teachers': typeof DashboardTeachersRoute
   '/dashboard': typeof DashboardIndexRoute
@@ -165,7 +201,9 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
   '/dashboard/courses': typeof DashboardCoursesRoute
+  '/dashboard/payment': typeof DashboardPaymentRoute
   '/dashboard/pensum': typeof DashboardPensumRoute
+  '/dashboard/schedule': typeof DashboardScheduleRoute
   '/dashboard/student': typeof DashboardStudentRoute
   '/dashboard/teachers': typeof DashboardTeachersRoute
   '/dashboard/': typeof DashboardIndexRoute
@@ -177,7 +215,9 @@ export interface FileRouteTypes {
     | '/'
     | '/dashboard'
     | '/dashboard/courses'
+    | '/dashboard/payment'
     | '/dashboard/pensum'
+    | '/dashboard/schedule'
     | '/dashboard/student'
     | '/dashboard/teachers'
     | '/dashboard/'
@@ -185,7 +225,9 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/dashboard/courses'
+    | '/dashboard/payment'
     | '/dashboard/pensum'
+    | '/dashboard/schedule'
     | '/dashboard/student'
     | '/dashboard/teachers'
     | '/dashboard'
@@ -194,7 +236,9 @@ export interface FileRouteTypes {
     | '/'
     | '/dashboard'
     | '/dashboard/courses'
+    | '/dashboard/payment'
     | '/dashboard/pensum'
+    | '/dashboard/schedule'
     | '/dashboard/student'
     | '/dashboard/teachers'
     | '/dashboard/'
@@ -232,7 +276,9 @@ export const routeTree = rootRoute
       "filePath": "dashboard/route.tsx",
       "children": [
         "/dashboard/courses",
+        "/dashboard/payment",
         "/dashboard/pensum",
+        "/dashboard/schedule",
         "/dashboard/student",
         "/dashboard/teachers",
         "/dashboard/"
@@ -242,8 +288,16 @@ export const routeTree = rootRoute
       "filePath": "dashboard/courses.tsx",
       "parent": "/dashboard"
     },
+    "/dashboard/payment": {
+      "filePath": "dashboard/payment.tsx",
+      "parent": "/dashboard"
+    },
     "/dashboard/pensum": {
       "filePath": "dashboard/pensum.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/schedule": {
+      "filePath": "dashboard/schedule.tsx",
       "parent": "/dashboard"
     },
     "/dashboard/student": {

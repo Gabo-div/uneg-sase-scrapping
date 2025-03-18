@@ -22,7 +22,16 @@ import {
   SidebarFooter,
 } from "@/components/ui/sidebar";
 
-import { Book, File, GraduationCap, List, LogOut, Users } from "lucide-react";
+import {
+  Book,
+  Calendar,
+  File,
+  GraduationCap,
+  List,
+  LogOut,
+  Users,
+  Wallet,
+} from "lucide-react";
 import { twMerge } from "tailwind-merge";
 import { Button } from "@/components/ui/button";
 import Logo from "@/assets/uneg-logo.png";
@@ -31,7 +40,7 @@ import { Separator } from "@/components/ui/separator";
 export const Route = createFileRoute("/dashboard")({
   component: RouteComponent,
   beforeLoad: () => {
-    if (!sessionStorage.getItem("sessionId")) {
+    if (!sessionStorage.getItem("sipId") || !sessionStorage.getItem("saseId")) {
       throw redirect({
         to: "/",
       });
@@ -73,6 +82,22 @@ const data = [
         title: "Docentes",
         url: "/dashboard/teachers",
         icon: Users,
+      },
+    ],
+  },
+
+  {
+    title: "Inscripción",
+    items: [
+      {
+        title: "Cronograma",
+        url: "/dashboard/schedule",
+        icon: Calendar,
+      },
+      {
+        title: "Registro de pago",
+        url: "/dashboard/payment",
+        icon: Wallet,
       },
     ],
   },
@@ -140,7 +165,8 @@ function RouteComponent() {
         <SidebarFooter className="bg-white">
           <Button
             onClick={() => {
-              sessionStorage.removeItem("sessionId");
+              sessionStorage.removeItem("sipId");
+              sessionStorage.removeItem("saseId");
               navigate({ to: "/" });
             }}
           >
