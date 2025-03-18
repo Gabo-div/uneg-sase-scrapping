@@ -36,6 +36,7 @@ import { twMerge } from "tailwind-merge";
 import { Button } from "@/components/ui/button";
 import Logo from "@/assets/uneg-logo.png";
 import { Separator } from "@/components/ui/separator";
+import StatusBadge from "@/components/StatusBadge";
 
 export const Route = createFileRoute("/dashboard")({
   component: RouteComponent,
@@ -178,12 +179,15 @@ function RouteComponent() {
       </Sidebar>
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 border-b">
-          <div className="flex items-center gap-2 px-3">
+          <div className="flex items-center gap-2 px-3 w-full">
             <SidebarTrigger />
             <Separator orientation="vertical" />
             <h2 className="hidden md:block font-semibold">
               Sistema de Apoyo a los Servicios Estudiantiles
             </h2>
+            <div className="ml-auto">
+              <StatusBadge />
+            </div>
           </div>
         </header>
         <main className="flex-1 p-4">
