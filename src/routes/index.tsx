@@ -15,6 +15,7 @@ import { login } from "@/services/auth";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Card } from "@/components/ui/card";
 import Logo from "@/assets/uneg-logo.png";
+import StatusBadge from "@/components/StatusBadge";
 
 export const Route = createFileRoute("/")({
   component: App,
@@ -63,13 +64,14 @@ function App() {
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-primary sm:p-4">
-      <Card className="flex-1 flex items-center justify-center rounded-none sm:flex-0 sm:rounded-lg sm:container sm:max-w-md p-0">
+      <Card className="relative flex-1 flex items-center justify-center rounded-none sm:flex-0 sm:rounded-lg sm:container sm:max-w-md p-0">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col space-y-8 p-8 py-18"
             autoComplete="off"
           >
+            <StatusBadge />
             <div className="flex flex-col items-center gap-4">
               <img src={Logo} className="size-20" />
               <h1 className="font-bold text-center">
