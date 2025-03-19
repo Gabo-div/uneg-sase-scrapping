@@ -65,7 +65,7 @@ function App() {
   };
 
   return (
-    <div className="bg-primary flex min-h-screen w-full flex-col items-center justify-center sm:p-4">
+    <div className="bg-primary flex min-h-screen w-full flex-col items-center justify-center sm:p-4 dark:bg-zinc-900">
       <Card className="relative flex flex-1 items-center justify-center rounded-none p-0 sm:container sm:max-w-md sm:flex-0 sm:rounded-lg">
         <Form {...form}>
           <form
@@ -75,7 +75,7 @@ function App() {
           >
             <StatusBadge />
             <div className="flex flex-col items-center gap-4">
-              <img src={Logo} className="size-20" />
+              <img src={Logo} className="size-20 dark:grayscale dark:invert" />
               <h1 className="text-center font-bold">
                 Sistema de Apoyo a los Servicios Estudiantiles
               </h1>

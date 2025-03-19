@@ -77,19 +77,19 @@ function RouteComponent() {
               <div className="flex flex-wrap gap-2">
                 <Badge
                   variant="outline"
-                  className="bg-cobalt-100 text-cobalt-800 border-cobalt-200"
+                  className="bg-cobalt-100 text-cobalt-800 border-cobalt-200 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200"
                 >
                   {data.personalData.status}
                 </Badge>
                 <Badge
                   variant="outline"
-                  className="bg-cobalt-100 text-cobalt-800 border-cobalt-200"
+                  className="bg-cobalt-100 text-cobalt-800 border-cobalt-200 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200"
                 >
                   Nivel {data.personalData.level}
                 </Badge>
                 <Badge
                   variant="outline"
-                  className="bg-cobalt-100 text-cobalt-800 border-cobalt-200"
+                  className="bg-cobalt-100 text-cobalt-800 border-cobalt-200 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200"
                 >
                   Índice: {data.personalData.academicIndex}
                 </Badge>

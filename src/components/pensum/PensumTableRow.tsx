@@ -32,8 +32,8 @@ export default function PensumTableRow({ course: item }: Props) {
       <TableCell className="text-center">{item.id}</TableCell>
       <TableCell>
         <div className="flex items-center gap-4">
-          <div className="bg-cobalt-100 flex aspect-square h-8 items-center justify-center rounded-md">
-            <Book className="text-cobalt-900 size-4" />
+          <div className="bg-cobalt-100 flex aspect-square h-8 items-center justify-center rounded-md dark:bg-zinc-800">
+            <Book className="text-cobalt-900 size-4 dark:text-zinc-100" />
           </div>
           <div className="flex flex-col">
             <span className="font-bold">{item.name}</span>
@@ -42,7 +42,7 @@ export default function PensumTableRow({ course: item }: Props) {
       </TableCell>
       <TableCell className="text-center">
         {item.semester ? (
-          <Badge className="bg-cobalt-100 text-cobalt-900">
+          <Badge className="bg-cobalt-100 text-cobalt-900 dark:bg-zinc-800 dark:text-zinc-100">
             {semesterWithSuffix(item.semester)}
           </Badge>
         ) : null}
@@ -93,11 +93,17 @@ export default function PensumTableRow({ course: item }: Props) {
       </TableCell>
       <TableCell className="text-center">
         {approved ? (
-          <Badge className="text-gren-900 bg-green-200">Aprobada</Badge>
+          <Badge className="text-gren-900 bg-green-200 dark:bg-green-950 dark:text-green-100">
+            Aprobada
+          </Badge>
         ) : registered ? (
-          <Badge className="bg-cobalt-200 text-cobalt-900">Inscrita</Badge>
+          <Badge className="bg-cobalt-200 text-cobalt-9000 dark:bg-cobalt-950 dark:text-cobalt-100">
+            Inscrita
+          </Badge>
         ) : (
-          <Badge className="bg-red-200 text-red-900">Pendiente</Badge>
+          <Badge className="bg-red-200 text-red-900 dark:bg-red-950 dark:text-red-100">
+            Pendiente
+          </Badge>
         )}
       </TableCell>
     </TableRow>

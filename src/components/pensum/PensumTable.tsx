@@ -30,7 +30,7 @@ export default function PensumTable({
     <div className="grid grid-cols-1 gap-8">
       <div className="overflow-hidden rounded-md border">
         <Table>
-          <TableHeader className="bg-zinc-100">
+          <TableHeader className="bg-zinc-100 dark:bg-zinc-900">
             <TableRow>
               <TableHead className="w-24 text-center">Código</TableHead>
               <TableHead>Asignatura</TableHead>
@@ -69,7 +69,7 @@ export default function PensumTable({
                   {courses.map((item) => (
                     <PensumTableRow key={item.id} course={item} />
                   ))}
-                  <TableRow className="bg-zinc-100">
+                  <TableRow className="bg-zinc-100 dark:bg-zinc-900">
                     <TableCell colSpan={3}>
                       <div className="flex flex-1 justify-center">
                         <span className="font-bold">Semester {key}</span>

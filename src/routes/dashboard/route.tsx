@@ -25,18 +25,30 @@ import {
 import {
   Book,
   Calendar,
+  ChevronsUpDown,
   File,
   GraduationCap,
   List,
   LogOut,
+  Moon,
+  Sun,
   Users,
   Wallet,
 } from "lucide-react";
 import { twMerge } from "tailwind-merge";
-import { Button } from "@/components/ui/button";
 import Logo from "@/assets/uneg-logo.png";
 import { Separator } from "@/components/ui/separator";
 import StatusBadge from "@/components/StatusBadge";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import useUserInfo from "@/hooks/useUserInfo";
+import { useTheme } from "@/components/ThemeProvider";
 
 export const Route = createFileRoute("/dashboard")({
   component: RouteComponent,
@@ -106,19 +118,21 @@ const data = [
 
 function RouteComponent() {
   const navigate = useNavigate();
+  const { data: student } = useUserInfo();
+  const { setTheme } = useTheme();
 
   return (
     <SidebarProvider>
       <Sidebar>
-        <SidebarHeader className="h-16 border-b bg-white">
+        <SidebarHeader className="dark:bg-background h-16 border-b bg-white">
           <div className="flex h-full w-full items-center gap-3 px-2">
-            <img src={Logo} className="size-9" />
+            <img src={Logo} className="size-9 dark:grayscale dark:invert" />
             <div className="flex flex-col leading-tight">
               <h1 className="text-primary text-3xl font-black">UNEG</h1>
             </div>
           </div>
         </SidebarHeader>
-        <SidebarContent className="bg-white">
+        <SidebarContent className="dark:bg-background bg-white">
           {data.map((item) => (
             <SidebarGroup key={item.title}>
               <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
@@ -131,8 +145,8 @@ function RouteComponent() {
                           <SidebarMenuButton
                             size="lg"
                             className={twMerge(
-                              "hover:bg-cobalt-50",
-                              isActive && "bg-cobalt-50",
+                              "hover:bg-cobalt-50 dark:hover:bg-zinc-900",
+                              isActive && "bg-cobalt-50 dark:bg-zinc-900",
                             )}
                             disabled={item.disabled}
                           >
@@ -140,14 +154,16 @@ function RouteComponent() {
                               <div
                                 className={twMerge(
                                   "rounded-md p-2 transition-all",
-                                  isActive && "bg-cobalt-900 text-white",
+                                  isActive &&
+                                    "bg-cobalt-900 text-white dark:bg-zinc-800",
                                 )}
                               >
                                 <item.icon className="size-4" />
                               </div>
                               <span
                                 className={twMerge(
-                                  isActive && "text-cobalt-900 font-bold",
+                                  isActive &&
+                                    "text-cobalt-900 font-bold dark:text-white",
                                 )}
                               >
                                 {item.title}
@@ -163,17 +179,66 @@ function RouteComponent() {
             </SidebarGroup>
           ))}
         </SidebarContent>
-        <SidebarFooter className="bg-white">
-          <Button
-            onClick={() => {
-              sessionStorage.removeItem("sipId");
-              sessionStorage.removeItem("saseId");
-              navigate({ to: "/" });
-            }}
-          >
-            Cerrar Sesión
-            <LogOut />
-          </Button>
+        <Separator />
+        <SidebarFooter className="dark:bg-background bg-white">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <SidebarMenuButton
+                size="lg"
+                className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              >
+                <div className="grid flex-1 text-left text-sm leading-tight">
+                  <span className="truncate font-semibold">
+                    {student?.personalData.names}{" "}
+                    {student?.personalData.surnames}
+                  </span>
+                  <span className="truncate text-xs">
+                    {student?.academicData.career}
+                  </span>
+                </div>
+                <ChevronsUpDown className="ml-auto size-4" />
+              </SidebarMenuButton>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+              align="end"
+              sideOffset={4}
+            >
+              <DropdownMenuGroup>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <DropdownMenuItem>
+                      <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+                      <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+                      Cambiar Tema
+                    </DropdownMenuItem>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuItem onClick={() => setTheme("light")}>
+                      Light
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme("dark")}>
+                      Dark
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme("system")}>
+                      System
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                onClick={() => {
+                  sessionStorage.removeItem("sipId");
+                  sessionStorage.removeItem("saseId");
+                  navigate({ to: "/" });
+                }}
+              >
+                <LogOut />
+                Cerrar Sesión
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </SidebarFooter>
         <SidebarRail />
       </Sidebar>

@@ -54,16 +54,18 @@ function RouteComponent() {
           </div>
           <span>{data.changes}</span>
         </Card>
-        <Card className="flex flex-col gap-2 bg-red-50 p-6 @lg:col-span-2">
+        <Card className="flex flex-col gap-2 bg-red-50 p-6 @lg:col-span-2 dark:bg-red-950/50">
           <div className="flex items-center gap-4">
-            <Info className="size-5 text-red-500" />
-            <h2 className="text-lg font-bold text-red-500">
+            <Info className="size-5 text-red-500 dark:text-red-300" />
+            <h2 className="text-lg font-bold text-red-500 dark:text-red-300">
               Información importante
             </h2>
           </div>
           {data.warning}
           <span></span>
-          <span className="font-bold text-red-500">{data.warning2}</span>
+          <span className="font-bold text-red-500 dark:text-red-300">
+            {data.warning2}
+          </span>
         </Card>
       </div>
     </div>

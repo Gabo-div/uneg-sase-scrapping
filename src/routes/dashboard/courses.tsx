@@ -44,11 +44,11 @@ function RouteComponent() {
 
       <div className="grid grid-cols-1 gap-8">
         <div className="overflow-hidden rounded-md border">
-          <div className="bg-cobalt-900 text-cobalt-50 flex items-center gap-4 px-4 py-6">
+          <div className="bg-cobalt-900 text-cobalt-50 flex items-center gap-4 px-4 py-6 dark:bg-zinc-900">
             <h2 className="text-xl font-bold">Asignaturas Inscritas</h2>
           </div>
           <Table>
-            <TableHeader className="bg-zinc-100">
+            <TableHeader className="bg-zinc-100 dark:bg-zinc-800">
               <TableRow>
                 <TableHead className="w-24 text-center">Código</TableHead>
                 <TableHead>Asignatura</TableHead>
@@ -68,8 +68,8 @@ function RouteComponent() {
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-4 py-2">
-                        <div className="bg-cobalt-100 flex aspect-square h-8 items-center justify-center rounded-md">
-                          <Book className="text-cobalt-900 size-4" />
+                        <div className="bg-cobalt-100 flex aspect-square h-8 items-center justify-center rounded-md dark:bg-zinc-800">
+                          <Book className="text-cobalt-900 size-4 dark:text-zinc-100" />
                         </div>
                         <div className="flex flex-col">
                           <span className="font-bold">{course.name}</span>
@@ -81,7 +81,7 @@ function RouteComponent() {
                     </TableCell>
                     <TableCell className="text-center">
                       {course.semester ? (
-                        <Badge className="bg-cobalt-100 text-cobalt-900">
+                        <Badge className="bg-cobalt-100 text-cobalt-900 dark:bg-zinc-800 dark:text-zinc-100">
                           {semesterWithSuffix(course.semester)}
                         </Badge>
                       ) : null}
@@ -96,11 +96,11 @@ function RouteComponent() {
         </div>
 
         <div className="overflow-hidden rounded-md border">
-          <div className="bg-cobalt-900 text-cobalt-50 flex items-center gap-4 px-4 py-6">
+          <div className="bg-cobalt-900 text-cobalt-50 flex items-center gap-4 px-4 py-6 dark:bg-zinc-900">
             <h2 className="text-xl font-bold">Asignaturas Aprobadas</h2>
           </div>
           <Table>
-            <TableHeader className="bg-zinc-100">
+            <TableHeader className="bg-zinc-100 dark:bg-zinc-800">
               <TableRow>
                 <TableHead className="w-24 text-center">Código</TableHead>
                 <TableHead>Asignatura</TableHead>
@@ -120,8 +120,8 @@ function RouteComponent() {
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-4 py-2">
-                        <div className="bg-cobalt-100 flex aspect-square h-8 items-center justify-center rounded-md">
-                          <Book className="text-cobalt-900 size-4" />
+                        <div className="bg-cobalt-100 flex aspect-square h-8 items-center justify-center rounded-md dark:bg-zinc-800">
+                          <Book className="text-cobalt-900 size-4 dark:text-zinc-100" />
                         </div>
                         <div className="flex flex-col">
                           <span className="font-bold">{course.name}</span>
@@ -130,7 +130,7 @@ function RouteComponent() {
                     </TableCell>
                     <TableCell className="text-center">
                       {course.semester ? (
-                        <Badge className="bg-cobalt-100 text-cobalt-900">
+                        <Badge className="bg-cobalt-100 text-cobalt-900 dark:bg-zinc-800 dark:text-zinc-100">
                           {semesterWithSuffix(course.semester)}
                         </Badge>
                       ) : null}
@@ -147,11 +147,11 @@ function RouteComponent() {
         </div>
 
         <div className="overflow-hidden rounded-md border">
-          <div className="bg-cobalt-900 text-cobalt-50 flex items-center gap-4 px-4 py-6">
+          <div className="bg-cobalt-900 text-cobalt-50 flex items-center gap-4 px-4 py-6 dark:bg-zinc-900">
             <h2 className="text-xl font-bold">Asignaturas Reprobadas</h2>
           </div>
           <Table>
-            <TableHeader className="bg-zinc-100">
+            <TableHeader className="bg-zinc-100 dark:bg-zinc-800">
               <TableRow>
                 <TableHead className="w-24 text-center">Código</TableHead>
                 <TableHead>Asignatura</TableHead>
@@ -172,8 +172,8 @@ function RouteComponent() {
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-4 py-2">
-                        <div className="bg-cobalt-100 flex aspect-square h-8 items-center justify-center rounded-md">
-                          <Book className="text-cobalt-900 size-4" />
+                        <div className="bg-cobalt-100 flex aspect-square h-8 items-center justify-center rounded-md dark:bg-zinc-800">
+                          <Book className="text-cobalt-900 size-4 dark:text-zinc-100" />
                         </div>
                         <div className="flex flex-col">
                           <span className="font-bold">{course.name}</span>
@@ -182,7 +182,7 @@ function RouteComponent() {
                     </TableCell>
                     <TableCell className="text-center">
                       {course.semester ? (
-                        <Badge className="bg-cobalt-100 text-cobalt-900">
+                        <Badge className="bg-cobalt-100 text-cobalt-900 dark:bg-zinc-800 dark:text-zinc-100">
                           {semesterWithSuffix(course.semester)}
                         </Badge>
                       ) : null}

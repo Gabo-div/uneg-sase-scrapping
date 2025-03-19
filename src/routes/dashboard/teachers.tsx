@@ -36,19 +36,19 @@ function RouteComponent() {
           return (
             <Card key={teacher.ci} className="gap-2 p-8">
               <h2 className="font-bold">{teacher.name}</h2>
-              <span className="text-sm font-medium text-zinc-700">
+              <span className="text-sm font-medium text-zinc-700 dark:text-zinc-400">
                 {teacher.ci}
               </span>
 
               <div className="flex items-center gap-2">
-                <div className="bg-cobalt-100 flex aspect-square h-8 items-center justify-center rounded-md">
-                  <Book className="text-cobalt-900 size-4" />
+                <div className="bg-cobalt-100 flex aspect-square h-8 items-center justify-center rounded-md dark:bg-zinc-800">
+                  <Book className="text-cobalt-900 size-4 dark:text-zinc-100" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-sm font-bold text-zinc-500">
+                  <span className="text-sm font-bold text-zinc-500 dark:text-zinc-400">
                     {course.name}
                   </span>
-                  <span className="text-sm text-zinc-500">
+                  <span className="text-sm text-zinc-500 dark:text-zinc-400">
                     Sección {teacher.courseSection}
                   </span>
                 </div>

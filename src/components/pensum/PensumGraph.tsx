@@ -12,6 +12,7 @@ import "@xyflow/react/dist/style.css";
 import { useEffect, useMemo, useState } from "react";
 import PensumGraphNode from "./PensumGrahpNode";
 import useCoursesInfo from "@/hooks/useCoursesInfo";
+import { useTheme } from "../ThemeProvider";
 
 interface Props {
   courses: Course[];
@@ -87,6 +88,8 @@ export default function PensumGraph({
 
   const nodeTypes = useMemo(() => ({ courseNode: PensumGraphNode }), []);
 
+  const { theme } = useTheme();
+
   return (
     <div className="flex-1 overflow-hidden rounded-md border">
       <ReactFlow
@@ -96,6 +99,7 @@ export default function PensumGraph({
         nodesConnectable={false}
         nodesDraggable={false}
         minZoom={0.3}
+        colorMode={theme}
       >
         <Controls />
         <Background gap={12} size={1} />

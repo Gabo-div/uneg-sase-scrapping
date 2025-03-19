@@ -230,7 +230,7 @@ function RouteComponent() {
 
           <div className="overflow-hidden rounded-lg border">
             <Table>
-              <TableHeader className="bg-zinc-100">
+              <TableHeader className="bg-zinc-100 dark:bg-zinc-900">
                 <TableRow>
                   <TableHead className="text-center">Fecha</TableHead>
                   <TableHead className="text-center">Depósito</TableHead>
@@ -248,15 +248,15 @@ function RouteComponent() {
                     <TableCell className="text-center">{p.amount}</TableCell>
                     <TableCell className="text-center">
                       {p.status === "VáLIDO" ? (
-                        <Badge className="text-gren-900 bg-green-200">
+                        <Badge className="text-gren-900 bg-green-200 dark:bg-green-950 dark:text-green-100">
                           VÁLIDO
                         </Badge>
                       ) : p.status === "POR VALIDAR" ? (
-                        <Badge className="bg-cobalt-200 text-cobalt-900">
+                        <Badge className="bg-cobalt-200 text-cobalt-9000 dark:bg-cobalt-950 dark:text-cobalt-100">
                           POR VALIDAR
                         </Badge>
                       ) : (
-                        <Badge className="bg-red-200 text-red-900">
+                        <Badge className="bg-red-200 text-red-900 dark:bg-red-950 dark:text-red-100">
                           NO VÁLIDO
                         </Badge>
                       )}
@@ -273,7 +273,7 @@ function RouteComponent() {
 
           <div className="overflow-hidden rounded-lg border">
             <Table>
-              <TableHeader className="bg-zinc-100">
+              <TableHeader className="bg-zinc-100 dark:bg-zinc-900">
                 <TableRow>
                   <TableHead className="text-center">Fecha</TableHead>
                   <TableHead>Descripción</TableHead>
@@ -296,7 +296,7 @@ function RouteComponent() {
                     </TableRow>
                   );
                 })}
-                <TableRow className="bg-zinc-100">
+                <TableRow className="bg-zinc-100 dark:bg-zinc-900">
                   <TableCell className="text-center" colSpan={3}>
                     Saldo actual
                   </TableCell>
