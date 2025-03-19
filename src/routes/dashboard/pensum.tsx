@@ -26,10 +26,10 @@ function RouteComponent() {
   }
 
   return (
-    <div className="py-8 container mx-auto max-w-8xl h-full flex flex-col">
-      <h1 className="text-3xl font-bold mb-4">Pensum de Estudio</h1>
+    <div className="max-w-8xl container mx-auto flex h-full flex-col py-8">
+      <h1 className="mb-4 text-3xl font-bold">Pensum de Estudio</h1>
 
-      <div className="flex flex-col items-start gap-4 mb-4 sm:flex-row">
+      <div className="mb-4 flex flex-col items-start gap-4 sm:flex-row">
         <Toggle
           variant="outline"
           pressed={hideApproved}

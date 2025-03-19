@@ -22,8 +22,8 @@ function RouteComponent() {
   }
 
   return (
-    <div className="py-8 container mx-auto max-w-6xl h-full flex flex-col">
-      <h1 className="text-3xl font-bold mb-4">Docentes</h1>
+    <div className="container mx-auto flex h-full max-w-6xl flex-col py-8">
+      <h1 className="mb-4 text-3xl font-bold">Docentes</h1>
 
       <div className="space-y-4">
         {teachers.map((teacher) => {
@@ -34,18 +34,18 @@ function RouteComponent() {
           }
 
           return (
-            <Card key={teacher.ci} className="p-8 gap-2">
+            <Card key={teacher.ci} className="gap-2 p-8">
               <h2 className="font-bold">{teacher.name}</h2>
-              <span className="font-medium text-sm text-zinc-700">
+              <span className="text-sm font-medium text-zinc-700">
                 {teacher.ci}
               </span>
 
               <div className="flex items-center gap-2">
-                <div className="h-8 aspect-square rounded-md bg-cobalt-100 flex items-center justify-center">
-                  <Book className="size-4 text-cobalt-900" />
+                <div className="bg-cobalt-100 flex aspect-square h-8 items-center justify-center rounded-md">
+                  <Book className="text-cobalt-900 size-4" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-bold text-zinc-500 text-sm">
+                  <span className="text-sm font-bold text-zinc-500">
                     {course.name}
                   </span>
                   <span className="text-sm text-zinc-500">

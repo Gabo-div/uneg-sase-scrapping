@@ -104,9 +104,9 @@ function RouteComponent() {
   );
 
   return (
-    <div className="@container py-8 container mx-auto max-w-6xl h-full flex flex-col">
-      <h1 className="text-3xl font-bold mb-4">Registro de Depósito</h1>
-      <div className="grid grid-cols-1 @4xl:grid-cols-2 gap-4">
+    <div className="@container container mx-auto flex h-full max-w-6xl flex-col py-8">
+      <h1 className="mb-4 text-3xl font-bold">Registro de Depósito</h1>
+      <div className="grid grid-cols-1 gap-4 @4xl:grid-cols-2">
         <Card className="p-0">
           <Form {...form}>
             <form
@@ -167,7 +167,7 @@ function RouteComponent() {
                 )}
               />
 
-              <div className="flex items-start gap-4 w-full">
+              <div className="flex w-full items-start gap-4">
                 <FormField
                   control={form.control}
                   name="ciType"
@@ -216,7 +216,7 @@ function RouteComponent() {
               <div className="flex flex-col gap-2">
                 <Button type="submit">Registrar</Button>
                 {form.formState.errors.root ? (
-                  <p className="text-red-500 text-sm text-center">
+                  <p className="text-center text-sm text-red-500">
                     {form.formState.errors.root.message}
                   </p>
                 ) : null}
@@ -228,7 +228,7 @@ function RouteComponent() {
         <Card className="p-8">
           <h2 className="text-xl font-bold">Depósitos Registrados</h2>
 
-          <div className="border rounded-lg overflow-hidden">
+          <div className="overflow-hidden rounded-lg border">
             <Table>
               <TableHeader className="bg-zinc-100">
                 <TableRow>
@@ -248,7 +248,7 @@ function RouteComponent() {
                     <TableCell className="text-center">{p.amount}</TableCell>
                     <TableCell className="text-center">
                       {p.status === "VáLIDO" ? (
-                        <Badge className="bg-green-200 text-gren-900">
+                        <Badge className="text-gren-900 bg-green-200">
                           VÁLIDO
                         </Badge>
                       ) : p.status === "POR VALIDAR" ? (
@@ -271,7 +271,7 @@ function RouteComponent() {
         <Card className="p-8 @4xl:col-span-2">
           <h2 className="text-xl font-bold">Estado de Cuenta</h2>
 
-          <div className="border rounded-lg overflow-hidden">
+          <div className="overflow-hidden rounded-lg border">
             <Table>
               <TableHeader className="bg-zinc-100">
                 <TableRow>

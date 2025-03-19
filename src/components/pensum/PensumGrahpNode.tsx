@@ -23,10 +23,10 @@ export default function PensumGraphNode({ data }: Props) {
         id={data.id}
         className="opacity-0"
       />
-      <div className="border p-4 bg-white flex flex-col gap-4 rounded-md">
+      <div className="flex flex-col gap-4 rounded-md border bg-white p-4">
         <div className="flex items-center gap-4">
-          <div className="h-8 aspect-square rounded-md bg-cobalt-100 flex items-center justify-center">
-            <Book className="size-4 text-cobalt-900" />
+          <div className="bg-cobalt-100 flex aspect-square h-8 items-center justify-center rounded-md">
+            <Book className="text-cobalt-900 size-4" />
           </div>
           <div className="flex flex-col">
             <span className="font-bold">{data.name}</span>
@@ -43,7 +43,7 @@ export default function PensumGraphNode({ data }: Props) {
 
           <Badge className="bg-cobalt-100 text-cobalt-900">{data.uc}uc</Badge>
           {approved ? (
-            <Badge className="bg-green-200 text-gren-900">Aprobada</Badge>
+            <Badge className="text-gren-900 bg-green-200">Aprobada</Badge>
           ) : registered ? (
             <Badge className="bg-cobalt-200 text-cobalt-900">Inscrita</Badge>
           ) : (

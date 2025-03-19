@@ -7,15 +7,15 @@ export default function StatusBadge() {
   return (
     <div
       className={twMerge(
-        "flex items-center border p-2 rounded-full justify-center gap-2 bg-zinc-50 border-zinc-500",
-        status === "down" && "bg-red-50 border-red-800",
-        status === "up" && "bg-green-50 border-green-800",
-        status === "maintenance" && "bg-yellow-50 border-yellow-800",
+        "flex items-center justify-center gap-2 rounded-full border border-zinc-500 bg-zinc-50 p-2",
+        status === "down" && "border-red-800 bg-red-50",
+        status === "up" && "border-green-800 bg-green-50",
+        status === "maintenance" && "border-yellow-800 bg-yellow-50",
       )}
     >
       <div
         className={twMerge(
-          "size-4 bg-zinc-500 rounded-full",
+          "size-4 rounded-full bg-zinc-500",
           status === "down" && "bg-red-800",
           status === "up" && "bg-green-800",
           status === "maintenance" && "bg-yellow-800",
@@ -23,7 +23,7 @@ export default function StatusBadge() {
       ></div>
       <span
         className={twMerge(
-          "uppercase text-xs font-bold text-zinc-500",
+          "text-xs font-bold text-zinc-500 uppercase",
           status === "down" && "text-red-800",
           status === "up" && "text-green-800",
           status === "maintenance" && "text-yellow-800",

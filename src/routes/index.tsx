@@ -65,8 +65,8 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-primary sm:p-4">
-      <Card className="relative flex-1 flex items-center justify-center rounded-none sm:flex-0 sm:rounded-lg sm:container sm:max-w-md p-0">
+    <div className="bg-primary flex min-h-screen w-full flex-col items-center justify-center sm:p-4">
+      <Card className="relative flex flex-1 items-center justify-center rounded-none p-0 sm:container sm:max-w-md sm:flex-0 sm:rounded-lg">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -76,7 +76,7 @@ function App() {
             <StatusBadge />
             <div className="flex flex-col items-center gap-4">
               <img src={Logo} className="size-20" />
-              <h1 className="font-bold text-center">
+              <h1 className="text-center font-bold">
                 Sistema de Apoyo a los Servicios Estudiantiles
               </h1>
             </div>
@@ -113,13 +113,13 @@ function App() {
             <div className="flex flex-col gap-2">
               <Button type="submit">Ingresar</Button>
               {form.formState.errors.root ? (
-                <p className="text-red-500 text-sm text-center">
+                <p className="text-center text-sm text-red-500">
                   {form.formState.errors.root.message}
                 </p>
               ) : null}
             </div>
 
-            <div className="w-full items-center flex flex-col">
+            <div className="flex w-full flex-col items-center">
               <p className="text-sm">
                 Este sistema no es oficial de la UNEG. No recopilamos ningún
                 tipo de información. Todo el código fuente está disponible en el{" "}

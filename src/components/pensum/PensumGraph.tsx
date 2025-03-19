@@ -88,7 +88,7 @@ export default function PensumGraph({
   const nodeTypes = useMemo(() => ({ courseNode: PensumGraphNode }), []);
 
   return (
-    <div className="flex-1 border rounded-md overflow-hidden">
+    <div className="flex-1 overflow-hidden rounded-md border">
       <ReactFlow
         nodeTypes={nodeTypes}
         nodes={nodes}

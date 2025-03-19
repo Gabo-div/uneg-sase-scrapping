@@ -32,8 +32,8 @@ export default function PensumTableRow({ course: item }: Props) {
       <TableCell className="text-center">{item.id}</TableCell>
       <TableCell>
         <div className="flex items-center gap-4">
-          <div className="h-8 aspect-square rounded-md bg-cobalt-100 flex items-center justify-center">
-            <Book className="size-4 text-cobalt-900" />
+          <div className="bg-cobalt-100 flex aspect-square h-8 items-center justify-center rounded-md">
+            <Book className="text-cobalt-900 size-4" />
           </div>
           <div className="flex flex-col">
             <span className="font-bold">{item.name}</span>
@@ -93,7 +93,7 @@ export default function PensumTableRow({ course: item }: Props) {
       </TableCell>
       <TableCell className="text-center">
         {approved ? (
-          <Badge className="bg-green-200 text-gren-900">Aprobada</Badge>
+          <Badge className="text-gren-900 bg-green-200">Aprobada</Badge>
         ) : registered ? (
           <Badge className="bg-cobalt-200 text-cobalt-900">Inscrita</Badge>
         ) : (

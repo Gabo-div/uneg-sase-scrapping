@@ -110,11 +110,11 @@ function RouteComponent() {
   return (
     <SidebarProvider>
       <Sidebar>
-        <SidebarHeader className="bg-white border-b h-16">
-          <div className="flex items-center w-full h-full gap-3 px-2">
+        <SidebarHeader className="h-16 border-b bg-white">
+          <div className="flex h-full w-full items-center gap-3 px-2">
             <img src={Logo} className="size-9" />
             <div className="flex flex-col leading-tight">
-              <h1 className="font-black text-3xl text-primary">UNEG</h1>
+              <h1 className="text-primary text-3xl font-black">UNEG</h1>
             </div>
           </div>
         </SidebarHeader>
@@ -139,7 +139,7 @@ function RouteComponent() {
                             <div className="flex items-center gap-4">
                               <div
                                 className={twMerge(
-                                  "p-2 rounded-md transition-all",
+                                  "rounded-md p-2 transition-all",
                                   isActive && "bg-cobalt-900 text-white",
                                 )}
                               >
@@ -179,10 +179,10 @@ function RouteComponent() {
       </Sidebar>
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 border-b">
-          <div className="flex items-center gap-2 px-3 w-full">
+          <div className="flex w-full items-center gap-2 px-3">
             <SidebarTrigger />
             <Separator orientation="vertical" />
-            <h2 className="hidden md:block font-semibold">
+            <h2 className="hidden font-semibold md:block">
               Sistema de Apoyo a los Servicios Estudiantiles
             </h2>
             <div className="ml-auto">

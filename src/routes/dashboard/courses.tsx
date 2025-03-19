@@ -39,12 +39,12 @@ function RouteComponent() {
   };
 
   return (
-    <div className="py-8 container mx-auto max-w-6xl">
-      <h1 className="text-3xl font-bold mb-4">Resumen de Asignaturas</h1>
+    <div className="container mx-auto max-w-6xl py-8">
+      <h1 className="mb-4 text-3xl font-bold">Resumen de Asignaturas</h1>
 
       <div className="grid grid-cols-1 gap-8">
-        <div className="border rounded-md overflow-hidden">
-          <div className="flex items-center bg-cobalt-900 text-cobalt-50 px-4 py-6 gap-4">
+        <div className="overflow-hidden rounded-md border">
+          <div className="bg-cobalt-900 text-cobalt-50 flex items-center gap-4 px-4 py-6">
             <h2 className="text-xl font-bold">Asignaturas Inscritas</h2>
           </div>
           <Table>
@@ -68,8 +68,8 @@ function RouteComponent() {
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-4 py-2">
-                        <div className="h-8 aspect-square rounded-md bg-cobalt-100 flex items-center justify-center">
-                          <Book className="size-4 text-cobalt-900" />
+                        <div className="bg-cobalt-100 flex aspect-square h-8 items-center justify-center rounded-md">
+                          <Book className="text-cobalt-900 size-4" />
                         </div>
                         <div className="flex flex-col">
                           <span className="font-bold">{course.name}</span>
@@ -95,8 +95,8 @@ function RouteComponent() {
           </Table>
         </div>
 
-        <div className="border rounded-md overflow-hidden">
-          <div className="flex items-center bg-cobalt-900 text-cobalt-50 px-4 py-6 gap-4">
+        <div className="overflow-hidden rounded-md border">
+          <div className="bg-cobalt-900 text-cobalt-50 flex items-center gap-4 px-4 py-6">
             <h2 className="text-xl font-bold">Asignaturas Aprobadas</h2>
           </div>
           <Table>
@@ -120,8 +120,8 @@ function RouteComponent() {
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-4 py-2">
-                        <div className="h-8 aspect-square rounded-md bg-cobalt-100 flex items-center justify-center">
-                          <Book className="size-4 text-cobalt-900" />
+                        <div className="bg-cobalt-100 flex aspect-square h-8 items-center justify-center rounded-md">
+                          <Book className="text-cobalt-900 size-4" />
                         </div>
                         <div className="flex flex-col">
                           <span className="font-bold">{course.name}</span>
@@ -146,8 +146,8 @@ function RouteComponent() {
           </Table>
         </div>
 
-        <div className="border rounded-md overflow-hidden">
-          <div className="flex items-center bg-cobalt-900 text-cobalt-50 px-4 py-6 gap-4">
+        <div className="overflow-hidden rounded-md border">
+          <div className="bg-cobalt-900 text-cobalt-50 flex items-center gap-4 px-4 py-6">
             <h2 className="text-xl font-bold">Asignaturas Reprobadas</h2>
           </div>
           <Table>
@@ -172,8 +172,8 @@ function RouteComponent() {
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-4 py-2">
-                        <div className="h-8 aspect-square rounded-md bg-cobalt-100 flex items-center justify-center">
-                          <Book className="size-4 text-cobalt-900" />
+                        <div className="bg-cobalt-100 flex aspect-square h-8 items-center justify-center rounded-md">
+                          <Book className="text-cobalt-900 size-4" />
                         </div>
                         <div className="flex flex-col">
                           <span className="font-bold">{course.name}</span>

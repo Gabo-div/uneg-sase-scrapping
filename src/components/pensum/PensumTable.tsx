@@ -28,7 +28,7 @@ export default function PensumTable({
 
   return (
     <div className="grid grid-cols-1 gap-8">
-      <div className="border rounded-md overflow-hidden">
+      <div className="overflow-hidden rounded-md border">
         <Table>
           <TableHeader className="bg-zinc-100">
             <TableRow>
@@ -71,7 +71,7 @@ export default function PensumTable({
                   ))}
                   <TableRow className="bg-zinc-100">
                     <TableCell colSpan={3}>
-                      <div className="flex-1 flex justify-center">
+                      <div className="flex flex-1 justify-center">
                         <span className="font-bold">Semester {key}</span>
                       </div>
                     </TableCell>
