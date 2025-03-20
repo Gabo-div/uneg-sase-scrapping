@@ -9,7 +9,9 @@ export default function useStatus() {
 
   const result = useSWR("status", async () => {
     return await ky
-      .get("https://servicio.uneg.edu.ve/sase/principal/login.php")
+      .get("https://servicio.uneg.edu.ve/sase/principal/login.php", {
+        retry: 0,
+      })
       .text();
   });
 
