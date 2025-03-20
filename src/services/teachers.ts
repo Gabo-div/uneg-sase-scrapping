@@ -3,9 +3,9 @@ import { Teacher } from "@/types/teacher";
 import { load } from "cheerio";
 
 export const getTeachers = async () => {
-  const res = await api.get(
-    "https://servicio.uneg.edu.ve/sase/evaluacion/sisa001.php",
-  );
+  const res = await api
+    .get("https://servicio.uneg.edu.ve/sase/evaluacion/sisa001.php")
+    .text();
 
   const $ = load(res);
 

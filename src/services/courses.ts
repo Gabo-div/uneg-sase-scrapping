@@ -9,9 +9,9 @@ import {
 import { load } from "cheerio";
 
 export const getCoursesSummary = async () => {
-  const res = await api.get(
-    "https://servicio.uneg.edu.ve/sase/expediente/sce114.php",
-  );
+  const res = await api
+    .get("https://servicio.uneg.edu.ve/sase/expediente/sce114.php")
+    .text();
 
   const $ = load(res);
 
@@ -144,9 +144,9 @@ export const getCoursesSummary = async () => {
 };
 
 export const getAllCourses = async () => {
-  const res = await api.get(
-    "https://servicio.uneg.edu.ve/sase/expediente/sce702.php",
-  );
+  const res = await api
+    .get("https://servicio.uneg.edu.ve/sase/expediente/sce702.php")
+    .text();
 
   const $ = load(res);
 

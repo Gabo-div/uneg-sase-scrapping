@@ -3,9 +3,9 @@ import { load } from "cheerio";
 import { academicDataSchema, personalDataSchema } from "@/types/student";
 
 const getPersonalData = async () => {
-  const res = await api.get(
-    "https://servicio.uneg.edu.ve/sase/expediente/sce101.php",
-  );
+  const res = await api
+    .get("https://servicio.uneg.edu.ve/sase/expediente/sce101.php")
+    .text();
 
   const $ = load(res);
 
@@ -111,9 +111,9 @@ const getPersonalData = async () => {
 };
 
 const getAcademicData = async () => {
-  const res = await api.get(
-    "https://servicio.uneg.edu.ve/sase/expediente/sce102.php",
-  );
+  const res = await api
+    .get("https://servicio.uneg.edu.ve/sase/expediente/sce102.php")
+    .text();
 
   const $ = load(res);
 
