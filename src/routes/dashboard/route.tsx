@@ -30,6 +30,7 @@ import {
   GraduationCap,
   List,
   LogOut,
+  Monitor,
   Moon,
   Sun,
   Users,
@@ -215,13 +216,16 @@ function RouteComponent() {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
                     <DropdownMenuItem onClick={() => setTheme("light")}>
-                      Light
+                      <Sun />
+                      Claro
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => setTheme("dark")}>
-                      Dark
+                      <Moon />
+                      Oscuro
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => setTheme("system")}>
-                      System
+                      <Monitor />
+                      Sistema
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
