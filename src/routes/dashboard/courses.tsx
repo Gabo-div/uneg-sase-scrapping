@@ -9,9 +9,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Course } from "@/types/course";
-import { Book } from "lucide-react";
+import { ArrowUpRight, Book } from "lucide-react";
 import { semesterWithSuffix } from "@/utils/course";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import useUserInfo from "@/hooks/useUserInfo";
+import { record } from "zod";
+import { useEffect, useState } from "react";
 
 export const Route = createFileRoute("/dashboard/courses")({
   component: RouteComponent,
@@ -19,6 +23,17 @@ export const Route = createFileRoute("/dashboard/courses")({
 
 function RouteComponent() {
   const { data, isLoading } = useCoursesInfo();
+  const { data: student } = useUserInfo();
+
+  const [recordURL, setRecordURL] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (student) {
+      setRecordURL(
+        `https://servicio.uneg.edu.ve/sase/expediente/sce110_pdf.php?PHPSESSID=${sessionStorage.getItem("saseId")}&apb_cedula=${student.personalData.ci}&apb_exp=${student.personalData.record}`,
+      );
+    }
+  }, [student]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -40,7 +55,21 @@ function RouteComponent() {
 
   return (
     <div className="container mx-auto max-w-6xl py-8">
-      <h1 className="mb-4 text-3xl font-bold">Resumen de Asignaturas</h1>
+      <div className="flex flex-col md:flex-row md:items-center">
+        <h1 className="mb-4 text-3xl font-bold">Resumen de Asignaturas</h1>
+        <div className="mb-4 md:ml-auto">
+          <Button asChild disabled={!!record}>
+            <a
+              href={recordURL || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver Ficha Académica
+              <ArrowUpRight />
+            </a>
+          </Button>
+        </div>
+      </div>
 
       <div className="grid grid-cols-1 gap-8">
         <div className="overflow-hidden rounded-md border">
