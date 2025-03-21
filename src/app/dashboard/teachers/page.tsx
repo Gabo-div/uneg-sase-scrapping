@@ -1,15 +1,12 @@
+"use client";
+
 import { Card } from "@/components/ui/card";
 import useCoursesInfo from "@/hooks/useCoursesInfo";
 import useTeachersInfo from "@/hooks/useTeachersInfo";
 import { Course } from "@/types/course";
-import { createFileRoute } from "@tanstack/react-router";
 import { Book } from "lucide-react";
 
-export const Route = createFileRoute("/dashboard/teachers")({
-  component: RouteComponent,
-});
-
-function RouteComponent() {
+export default function RouteComponent() {
   const { data: teachers, isLoading } = useTeachersInfo();
   const { findCourse } = useCoursesInfo();
 

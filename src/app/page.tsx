@@ -1,3 +1,5 @@
+"use client";
+
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -11,23 +13,20 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { login } from "@/services/auth";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { login } from "@/actions/auth";
 import { Card } from "@/components/ui/card";
 import Logo from "@/assets/uneg-logo.png";
 import StatusBadge from "@/components/StatusBadge";
-
-export const Route = createFileRoute("/")({
-  component: App,
-});
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const formSchema = z.object({
   username: z.string().min(1, "Debes ingresar un usuario"),
   password: z.string().min(1, "Debes ingresar una contraseña"),
 });
 
-function App() {
-  const navigate = useNavigate();
+export default function App() {
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -38,7 +37,7 @@ function App() {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const { sipId, saseId, invalid, blocked } = await login(values);
+    const { invalid, blocked } = await login(values);
 
     if (invalid) {
       form.setError("root", {
@@ -56,12 +55,7 @@ function App() {
       return;
     }
 
-    sessionStorage.setItem("sipId", sipId);
-    sessionStorage.setItem("saseId", saseId);
-
-    navigate({
-      to: "/dashboard",
-    });
+    router.push("/dashboard/student");
   };
 
   return (
@@ -75,7 +69,11 @@ function App() {
           >
             <StatusBadge />
             <div className="flex flex-col items-center gap-4">
-              <img src={Logo} className="size-20 dark:grayscale dark:invert" />
+              <Image
+                src={Logo}
+                alt="Logo"
+                className="size-20 dark:grayscale dark:invert"
+              />
               <h1 className="text-center font-bold">
                 Sistema de Apoyo a los Servicios Estudiantiles
               </h1>

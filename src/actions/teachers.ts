@@ -1,3 +1,5 @@
+"use server";
+
 import { api } from "@/lib/api";
 import { Teacher } from "@/types/teacher";
 import { load } from "cheerio";

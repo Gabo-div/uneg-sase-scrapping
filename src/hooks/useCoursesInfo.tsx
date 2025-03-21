@@ -1,4 +1,4 @@
-import { getInfoCourses } from "@/services/courses";
+import { getInfoCourses } from "@/actions/courses";
 import useSWR from "swr";
 
 export default function useCoursesInfo() {

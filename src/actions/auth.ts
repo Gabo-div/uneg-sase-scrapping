@@ -1,5 +1,9 @@
-import ky from "ky";
+"use server";
+
+import { api } from "@/lib/api";
 import { load } from "cheerio";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 const SIPLogin = async ({
   username,
@@ -8,7 +12,7 @@ const SIPLogin = async ({
   username: string;
   password: string;
 }) => {
-  const res1 = await ky
+  const res1 = await api
     .get("https://servicio.uneg.edu.ve/inscripcion/principal/login.php")
     .text();
   const $ = load(res1);
@@ -28,7 +32,7 @@ const SIPLogin = async ({
   formData.append("s_password", password);
   formData.append("cryp", code);
 
-  const res2 = await ky
+  const res2 = await api
     .post("https://servicio.uneg.edu.ve/inscripcion/principal/login.php", {
       body: formData,
     })
@@ -51,7 +55,7 @@ const SIPLogin = async ({
   formData2.append("xyz_mvg[1]", xyz1);
   formData2.append("xyz_mvg[2]", xyz2);
 
-  const res3 = await ky
+  const res3 = await api
     .post("https://servicio.uneg.edu.ve/inscripcion/principal/redirect.php", {
       body: formData2,
     })
@@ -61,8 +65,9 @@ const SIPLogin = async ({
 
   const text = $3.text();
 
+  (await cookies()).set("sipId", sessionId);
+
   return {
-    sessionId,
     invalid: text.includes("Lo siento, Usted es un usuario no registrado"),
     blocked: text.includes(
       "Lo siento, Usted es un usuario con el password bloqueado",
@@ -77,7 +82,7 @@ const SASELogin = async ({
   username: string;
   password: string;
 }) => {
-  const res1 = await ky
+  const res1 = await api
     .get("https://servicio.uneg.edu.ve/sase/principal/login.php")
     .text();
   const $ = load(res1);
@@ -97,7 +102,7 @@ const SASELogin = async ({
   formData.append("s_password", password);
   formData.append("cryp", code);
 
-  const res2 = await ky
+  const res2 = await api
     .post("https://servicio.uneg.edu.ve/sase/principal/login.php", {
       body: formData,
     })
@@ -120,7 +125,7 @@ const SASELogin = async ({
   formData2.append("xyz_mvg[1]", xyz1);
   formData2.append("xyz_mvg[2]", xyz2);
 
-  const res3 = await ky
+  const res3 = await api
     .post("https://servicio.uneg.edu.ve/sase/principal/redirect.php", {
       body: formData2,
     })
@@ -130,8 +135,9 @@ const SASELogin = async ({
 
   const text = $3.text();
 
+  (await cookies()).set("saseId", sessionId);
+
   return {
-    sessionId,
     invalid: text.includes("Lo siento, Usted es un usuario no registrado"),
     blocked: text.includes(
       "Lo siento, Usted es un usuario con el password bloqueado",
@@ -142,10 +148,20 @@ const SASELogin = async ({
 export const login = async (data: { username: string; password: string }) => {
   const [sip, sase] = await Promise.all([SIPLogin(data), SASELogin(data)]);
 
+  const invalid = sip.invalid || sase.invalid;
+  const blocked = sip.blocked || sase.blocked;
+
   return {
-    sipId: sip.sessionId,
-    saseId: sase.sessionId,
-    invalid: sip.invalid || sase.invalid,
-    blocked: sip.blocked || sase.blocked,
+    invalid,
+    blocked,
+    success: !invalid && !blocked,
   };
+};
+
+export const logout = async () => {
+  const cookiesStorage = await cookies();
+  cookiesStorage.delete("sipId");
+  cookiesStorage.delete("saseId");
+
+  redirect("/");
 };

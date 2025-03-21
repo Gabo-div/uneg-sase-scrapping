@@ -12,7 +12,7 @@ import "@xyflow/react/dist/style.css";
 import { useEffect, useMemo, useState } from "react";
 import PensumGraphNode from "./PensumGrahpNode";
 import useCoursesInfo from "@/hooks/useCoursesInfo";
-import { useTheme } from "../ThemeProvider";
+import { useTheme } from "next-themes";
 
 interface Props {
   courses: Course[];
@@ -99,7 +99,7 @@ export default function PensumGraph({
         nodesConnectable={false}
         nodesDraggable={false}
         minZoom={0.3}
-        colorMode={theme}
+        colorMode={theme as "dark" | "light" | "system"}
       >
         <Controls />
         <Background gap={12} size={1} />

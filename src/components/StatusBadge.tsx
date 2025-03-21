@@ -1,3 +1,5 @@
+"use client";
+
 import useStatus from "@/hooks/useStatus";
 import { twMerge } from "tailwind-merge";
 

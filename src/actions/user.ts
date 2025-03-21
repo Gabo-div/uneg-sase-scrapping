@@ -1,3 +1,5 @@
+"use server";
+
 import { api } from "@/lib/api";
 import { load } from "cheerio";
 import { academicDataSchema, personalDataSchema } from "@/types/student";

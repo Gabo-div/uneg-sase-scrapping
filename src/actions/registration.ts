@@ -1,3 +1,5 @@
+"use server";
+
 import { SIPApi } from "@/lib/api";
 import { Movement, Payment } from "@/types/payment";
 import { load } from "cheerio";

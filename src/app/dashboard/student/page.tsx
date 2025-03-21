@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+"use client";
+
 import useUserInfo from "@/hooks/useUserInfo";
 import {
   Card,
@@ -29,11 +30,7 @@ import {
 import useCoursesInfo from "@/hooks/useCoursesInfo";
 import { useEffect, useState } from "react";
 
-export const Route = createFileRoute("/dashboard/student")({
-  component: RouteComponent,
-});
-
-function RouteComponent() {
+export default function RouteComponent() {
   const { data, isLoading } = useUserInfo();
   const { data: courses } = useCoursesInfo();
 

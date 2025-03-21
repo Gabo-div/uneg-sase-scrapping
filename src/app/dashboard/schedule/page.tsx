@@ -1,14 +1,11 @@
+"use client";
+
 import { Card } from "@/components/ui/card";
-import { getRegistrationSchedule } from "@/services/registration";
-import { createFileRoute } from "@tanstack/react-router";
+import { getRegistrationSchedule } from "@/actions/registration";
 import { ArrowUpLeft, Calendar, Clock, Info, PlusCircle } from "lucide-react";
 import useSWR from "swr";
 
-export const Route = createFileRoute("/dashboard/schedule")({
-  component: RouteComponent,
-});
-
-function RouteComponent() {
+export default function RouteComponent() {
   const { data, isLoading } = useSWR(
     "registration-schedule",
     getRegistrationSchedule,

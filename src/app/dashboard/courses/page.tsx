@@ -1,5 +1,6 @@
+"use client";
+
 import useCoursesInfo from "@/hooks/useCoursesInfo";
-import { createFileRoute } from "@tanstack/react-router";
 import {
   Table,
   TableBody,
@@ -17,11 +18,7 @@ import useUserInfo from "@/hooks/useUserInfo";
 import { record } from "zod";
 import { useEffect, useState } from "react";
 
-export const Route = createFileRoute("/dashboard/courses")({
-  component: RouteComponent,
-});
-
-function RouteComponent() {
+export default function RouteComponent() {
   const { data, isLoading } = useCoursesInfo();
   const { data: student } = useUserInfo();
 

@@ -1,6 +1,7 @@
+"use client";
+
 import { Card } from "@/components/ui/card";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createFileRoute } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import {
@@ -33,14 +34,10 @@ import useSWR from "swr";
 import {
   getRegistrationPayments,
   registerPayment,
-} from "@/services/registration";
+} from "@/actions/registration";
 import { Badge } from "@/components/ui/badge";
 import useUserInfo from "@/hooks/useUserInfo";
 import { toast } from "sonner";
-
-export const Route = createFileRoute("/dashboard/payment")({
-  component: RouteComponent,
-});
 
 const formSchema = z.object({
   bank: z.string(),
@@ -51,7 +48,7 @@ const formSchema = z.object({
   ci: z.string().min(1, "Debe ingresar la cédula del titular"),
 });
 
-function RouteComponent() {
+export default function RouteComponent() {
   const { data: student } = useUserInfo();
 
   const { data, isLoading, mutate } = useSWR(

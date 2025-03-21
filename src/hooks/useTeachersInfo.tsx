@@ -1,4 +1,4 @@
-import { getTeachers } from "@/services/teachers";
+import { getTeachers } from "@/actions/teachers";
 import useSWR from "swr";
 
 export default function useTeachersInfo() {

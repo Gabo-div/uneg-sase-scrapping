@@ -1,10 +1,5 @@
-import {
-  createFileRoute,
-  Outlet,
-  Link,
-  redirect,
-  useNavigate,
-} from "@tanstack/react-router";
+"use client";
+
 import {
   SidebarProvider,
   SidebarTrigger,
@@ -26,7 +21,6 @@ import {
   Book,
   Calendar,
   ChevronsUpDown,
-  File,
   GraduationCap,
   List,
   LogOut,
@@ -49,18 +43,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import useUserInfo from "@/hooks/useUserInfo";
-import { useTheme } from "@/components/ThemeProvider";
-
-export const Route = createFileRoute("/dashboard")({
-  component: RouteComponent,
-  beforeLoad: () => {
-    if (!sessionStorage.getItem("sipId") || !sessionStorage.getItem("saseId")) {
-      throw redirect({
-        to: "/",
-      });
-    }
-  },
-});
+import Image from "next/image";
+import { useTheme } from "next-themes";
+import Link from "next/link";
+import { logout } from "@/actions/auth";
+import { usePathname } from "next/navigation";
 
 const data = [
   {
@@ -80,12 +67,6 @@ const data = [
         title: "Pensum",
         url: "/dashboard/pensum",
         icon: Book,
-      },
-      {
-        title: "Constancia de Estudio",
-        url: "/dashboard/certificate",
-        icon: File,
-        disabled: true,
       },
     ],
   },
@@ -117,17 +98,25 @@ const data = [
   },
 ];
 
-function RouteComponent() {
-  const navigate = useNavigate();
+export default function DashboardSidebar({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const { data: student } = useUserInfo();
   const { setTheme } = useTheme();
+  const pathname = usePathname();
 
   return (
     <SidebarProvider>
       <Sidebar>
         <SidebarHeader className="dark:bg-background h-16 border-b bg-white">
           <div className="flex h-full w-full items-center gap-3 px-2">
-            <img src={Logo} className="size-9 dark:grayscale dark:invert" />
+            <Image
+              src={Logo}
+              alt="logo"
+              className="size-9 dark:grayscale dark:invert"
+            />
             <div className="flex flex-col leading-tight">
               <h1 className="text-primary text-3xl font-black">UNEG</h1>
             </div>
@@ -139,18 +128,20 @@ function RouteComponent() {
               <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
               <SidebarGroupContent>
                 <SidebarMenu>
-                  {item.items.map((item) => (
-                    <SidebarMenuItem key={item.title}>
-                      <Link to={item.url} disabled={item.disabled}>
-                        {({ isActive }) => (
-                          <SidebarMenuButton
-                            size="lg"
-                            className={twMerge(
-                              "hover:bg-cobalt-50 dark:hover:bg-zinc-900",
-                              isActive && "bg-cobalt-50 dark:bg-zinc-900",
-                            )}
-                            disabled={item.disabled}
-                          >
+                  {item.items.map((item) => {
+                    const isActive = item.url === pathname;
+
+                    return (
+                      <SidebarMenuItem key={item.title}>
+                        <SidebarMenuButton
+                          size="lg"
+                          className={twMerge(
+                            "hover:bg-cobalt-50 dark:hover:bg-zinc-900",
+                            isActive && "bg-cobalt-50 dark:bg-zinc-900",
+                          )}
+                          asChild
+                        >
+                          <Link href={item.url}>
                             <div className="flex items-center gap-4">
                               <div
                                 className={twMerge(
@@ -170,11 +161,11 @@ function RouteComponent() {
                                 {item.title}
                               </span>
                             </div>
-                          </SidebarMenuButton>
-                        )}
-                      </Link>
-                    </SidebarMenuItem>
-                  ))}
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    );
+                  })}
                 </SidebarMenu>
               </SidebarGroupContent>
             </SidebarGroup>
@@ -233,9 +224,7 @@ function RouteComponent() {
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 onClick={() => {
-                  sessionStorage.removeItem("sipId");
-                  sessionStorage.removeItem("saseId");
-                  navigate({ to: "/" });
+                  logout();
                 }}
               >
                 <LogOut />
@@ -259,9 +248,7 @@ function RouteComponent() {
             </div>
           </div>
         </header>
-        <main className="flex-1 p-4">
-          <Outlet />
-        </main>
+        <main className="flex-1 p-4">{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );

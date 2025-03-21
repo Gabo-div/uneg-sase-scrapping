@@ -1,4 +1,4 @@
-import ky from "ky";
+import { checkStatus } from "@/actions/status";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 
@@ -7,13 +7,7 @@ export default function useStatus() {
     "checking" | "maintenance" | "down" | "up"
   >("checking");
 
-  const result = useSWR("status", async () => {
-    return await ky
-      .get("https://servicio.uneg.edu.ve/sase/principal/login.php", {
-        retry: 0,
-      })
-      .text();
-  });
+  const result = useSWR("status", checkStatus);
 
   useEffect(() => {
     if (result.error) {

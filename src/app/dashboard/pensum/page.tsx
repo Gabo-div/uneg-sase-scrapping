@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+"use client";
+
 import useCoursesInfo from "@/hooks/useCoursesInfo";
 import { Eye, EyeOff, Table2, Workflow } from "lucide-react";
 import { useState } from "react";
@@ -7,11 +8,7 @@ import PensumTable from "@/components/pensum/PensumTable";
 import PensumGraph from "@/components/pensum/PensumGraph";
 import { ReactFlowProvider } from "@xyflow/react";
 
-export const Route = createFileRoute("/dashboard/pensum")({
-  component: RouteComponent,
-});
-
-function RouteComponent() {
+export default function RouteComponent() {
   const { data, isLoading } = useCoursesInfo();
   const [hideApproved, setHideApproved] = useState(true);
   const [hideRegistered, setHideRegistered] = useState(true);
