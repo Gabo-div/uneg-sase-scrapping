@@ -46,6 +46,13 @@ const createTokenHook = (token: string) => {
   return hook;
 };
 
+const headersHook: BeforeRequestHook = async (req) => {
+  if (req.method !== "GET") {
+    req.headers.set("Origin", "https://servicio.uneg.edu.ve");
+    req.headers.set("Host", "servicio.uneg.edu.ve");
+  }
+};
+
 const headers = {
   "user-agent":
     "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.8177.1037 Safari/537.36",
@@ -54,7 +61,7 @@ const headers = {
 export const api = ky.create({
   headers,
   hooks: {
-    beforeRequest: [createTokenHook("saseId")],
+    beforeRequest: [headersHook, createTokenHook("saseId")],
     afterResponse: [checkSessionHook],
   },
 });
@@ -62,7 +69,7 @@ export const api = ky.create({
 export const SIPApi = ky.create({
   headers,
   hooks: {
-    beforeRequest: [createTokenHook("sipId")],
+    beforeRequest: [headersHook, createTokenHook("sipId")],
     afterResponse: [checkSessionHook],
   },
 });
